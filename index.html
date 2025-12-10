@@ -153,7 +153,7 @@
     </div>
   </section>
 
-  <!-- Dataset and stochastic modeling -->
+  <!-- Dataset and timing distributions -->
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Dataset Construction and Timing Distributions</h2>
@@ -175,21 +175,10 @@
           triplets that capture both spatial structure and simulation logic.
         </figcaption>
       </figure>
-
-      <figure style="margin-top: 2rem;">
-        <img src="static/images/5.2Quant.png"
-             alt="Arrival and service time distributions used in GDT-120K"
-             style="max-width: 100%; border-radius: 12px;">
-        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-          Arrival and service-time distributions fitted to factory statistics. Canonical distributions (constant, normal,
-          log-normal, Weibull, gamma, etc.) are used to parameterize <code>InterArrivalTime</code> and
-          <code>ProcessTime</code>, ensuring that generated models are quantitatively realistic.
-        </figcaption>
-      </figure>
     </div>
   </section>
 
-  <!-- Model architecture and UI -->
+  <!-- Model architecture -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Vision-Language Simulation Models</h2>
@@ -214,21 +203,37 @@
           FlexScript.
         </figcaption>
       </figure>
+    </div>
+  </section>
 
-      <figure style="margin-top: 2rem;">
+  <!-- Prototype interface / demo -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Prototype Interface</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          To make the model usable by non-expert users, we implement a simple prototype interface where engineers can
+          upload a layout sketch, type a short natural-language description of the production logic, and obtain
+          executable FlexScript that can be loaded into FlexSim. This interface exposes VLSM as a “layout-and-prompt in,
+          digital twin out” tool for rapid what-if analysis.
+        </p>
+      </div>
+
+      <figure style="margin-top: 1.5rem;">
         <img src="static/images/UI.png"
              alt="User interface for Generative Digital Twins"
              style="max-width: 100%; border-radius: 12px;">
         <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-          Prototype interface for generative digital twins. Users upload a layout sketch and provide a concise prompt; VLSM
-          returns FlexScript that can be loaded into FlexSim to instantiate the corresponding digital twin.
+          Prototype interface for generative digital twins. Users provide a sketch and a short description, and VLSM
+          returns FlexScript that instantiates the corresponding factory in FlexSim.
         </figcaption>
       </figure>
     </div>
   </section>
 
   <!-- Qualitative Results -->
-  <section class="section">
+  <section class="section hero is-light">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
 
@@ -241,6 +246,7 @@
         </p>
       </div>
 
+      <!-- Example 1: main layout-to-FlexScript -->
       <figure style="margin-top: 1.5rem;">
         <img src="static/images/Fig5_3.png"
              alt="Main qualitative examples of layout-to-FlexScript generation"
@@ -251,6 +257,19 @@
         </figcaption>
       </figure>
 
+      <!-- Example 2: LLM backbone comparison (5.2Quant) -->
+      <figure style="margin-top: 2rem;">
+        <img src="static/images/5.2Quant.png"
+             alt="Comparison across different LLM backbones on the same factory layout."
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Comparison of eight language backbones on a single production line. TinyLLaMA-1.1B and StarCoder2-7B closely
+          match the ground-truth digital twin, while generic LLaMA variants omit machines or misplace buffers, confirming
+          that code-specialized models are critical for executable digital twins.
+        </figcaption>
+      </figure>
+
+      <!-- Example 3: additional layouts -->
       <figure style="margin-top: 2rem;">
         <img src="static/images/suppl_2.png"
              alt="Additional qualitative example with AGV-based layout"

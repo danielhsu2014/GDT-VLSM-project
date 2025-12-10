@@ -112,16 +112,18 @@
     </div>
   </section>
 
-  <!-- Teaser: use first_pic.png -->
+  <!-- Teaser: main overview figure -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body has-text-centered">
-        <img src="static/images/first_pic.png"
-             alt="Overview of the Generative Digital Twins framework"
-             style="max-width: 100%; border-radius: 12px;">
-        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-          Overview of the Generative Digital Twins pipeline from layout sketch and prompt to executable FlexScript and simulation.
-        </h2>
+        <figure>
+          <img src="static/images/first_pic.png"
+               alt="Overview of the Generative Digital Twins framework"
+               style="max-width: 100%; border-radius: 12px;">
+          <figcaption class="subtitle has-text-centered" style="margin-top: 1rem;">
+            Generative Digital Twins pipeline: from layout sketch and natural-language prompt to executable FlexScript and industrial simulation.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -151,67 +153,124 @@
     </div>
   </section>
 
-  <!-- Key Figures -->
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Key Figures</h2>
-        <div id="key-figures-carousel" class="carousel results-carousel">
-          <div class="item">
-            <img src="static/images/dataset_pipeline.png"
-                 alt="GDT-120K dataset construction workflow" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              GDT-120K dataset construction from curated factory data and statistical fitting to FlexSim instantiation.
-            </h2>
-          </div>
-          <div class="item">
-            <img src="static/images/VLSM_Pipeline.png"
-                 alt="Vision-Language Simulation Model architecture" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              VLSM architecture integrating OpenCLIP, connector modules, and LLM backbones for FlexScript generation.
-            </h2>
-          </div>
-          <div class="item">
-            <img src="static/images/UI.png"
-                 alt="GDT user interface" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              Prototype interface where users provide a sketch and prompt, and VLSM returns executable FlexScript.
-            </h2>
-          </div>
-        </div>
+  <!-- Dataset and stochastic modeling -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Dataset Construction and Timing Distributions</h2>
+      <div class="content has-text-justified">
+        <p>
+          The GDT-120K dataset is built from real factory layouts and control logic, with each sample pairing a hand-drawn
+          layout sketch, a natural-language description, and executable FlexScript. Statistical fitting over factory logs and
+          engineering heuristics is used to instantiate realistic interarrival and service-time distributions, ensuring that
+          the generated code can be executed directly in FlexSim without manual repair.
+        </p>
       </div>
+
+      <figure style="margin-top: 1.5rem;">
+        <img src="static/images/dataset_pipeline.png"
+             alt="GDT-120K dataset construction workflow"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          GDT-120K dataset construction: from curated production layouts and scheduling rules to prompt–sketch–code
+          triplets that capture both spatial structure and simulation logic.
+        </figcaption>
+      </figure>
+
+      <figure style="margin-top: 2rem;">
+        <img src="static/images/5.2Quant.png"
+             alt="Arrival and service time distributions used in GDT-120K"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Arrival and service-time distributions fitted to factory statistics. Canonical distributions (constant, normal,
+          log-normal, Weibull, gamma, etc.) are used to parameterize <code>InterArrivalTime</code> and
+          <code>ProcessTime</code>, ensuring that generated models are quantitatively realistic.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Model architecture and UI -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Vision-Language Simulation Models</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          The proposed VLSM family couples an OpenCLIP visual encoder with code-pretrained language models through a
+          lightweight connector module. Layout sketches are encoded as a set of visual tokens that condition FlexScript
+          generation together with the textual prompt, allowing the model to reason jointly about topology, routing, and
+          timing parameters. Two backbones are explored: TinyLLaMA-1.1B for compact deployment and StarCoder2-7B for
+          stronger code priors.
+        </p>
+      </div>
+
+      <figure style="margin-top: 1.5rem;">
+        <img src="static/images/VLSM_Pipeline.png"
+             alt="Vision-Language Simulation Model architecture"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          VLSM architecture: an OpenCLIP encoder extracts visual tokens from the layout sketch, which are projected by a
+          connector and concatenated with text tokens before being decoded by a code-pretrained LLM into executable
+          FlexScript.
+        </figcaption>
+      </figure>
+
+      <figure style="margin-top: 2rem;">
+        <img src="static/images/UI.png"
+             alt="User interface for Generative Digital Twins"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Prototype interface for generative digital twins. Users upload a layout sketch and provide a concise prompt; VLSM
+          returns FlexScript that can be loaded into FlexSim to instantiate the corresponding digital twin.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- Qualitative Results -->
-  <section class="hero is-small is-light">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3">Qualitative Results</h2>
-        <div id="qual-carousel" class="carousel results-carousel">
-          <div class="item">
-            <img src="static/images/Fig5_3.png"
-                 alt="Qualitative FlexScript reconstruction example 1" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              Example 1: text-and-sketch to FlexScript with correct routing logic and parameter configurations.
-            </h2>
-          </div>
-          <div class="item">
-            <img src="static/images/suppl_2.png"
-                 alt="Qualitative FlexScript reconstruction example 2" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              Example 2: multimodal reasoning over AGV-based layouts with shared buffers and re-entrant flows.
-            </h2>
-          </div>
-          <div class="item">
-            <img src="static/images/suppl_3.png"
-                 alt="Qualitative FlexScript reconstruction example 3" loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              Example 3: complex workstation topology with high SVR/PMR and high execution success in FlexSim.
-            </h2>
-          </div>
-        </div>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Qualitative comparisons highlight that VLSM captures both high-level flow logic and fine-grained parameterization.
+          The model recovers workstation topology, buffering strategy, and AGV routing from sketches that contain only
+          coarse geometric cues. Generated FlexScript consistently satisfies the proposed SVR, PMR, and ESR metrics, and
+          produces factory simulations that are visually and functionally aligned with the ground-truth models.
+        </p>
       </div>
+
+      <figure style="margin-top: 1.5rem;">
+        <img src="static/images/Fig5_3.png"
+             alt="Main qualitative examples of layout-to-FlexScript generation"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Qualitative examples on held-out layouts. For each case, a sketch and textual description are converted into
+          FlexScript that reproduces correct routing, resource assignment, and timing parameters when executed in FlexSim.
+        </figcaption>
+      </figure>
+
+      <figure style="margin-top: 2rem;">
+        <img src="static/images/suppl_2.png"
+             alt="Additional qualitative example with AGV-based layout"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Additional example with AGV-based material handling and shared buffers. VLSM infers the number of vehicles,
+          docking logic, and buffer capacities from multimodal inputs, yielding structurally valid and executable code.
+        </figcaption>
+      </figure>
+
+      <figure style="margin-top: 2rem;">
+        <img src="static/images/suppl_3.png"
+             alt="Additional qualitative example with mixed manual and automated stations"
+             style="max-width: 100%; border-radius: 12px;">
+        <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+          Example with mixed manual and automated stations. The generated digital twin preserves re-entrant flows and
+          complex precedence constraints, demonstrating that the model scales to dense production lines with heterogeneous
+          workstation types.
+        </figcaption>
+      </figure>
     </div>
   </section>
 

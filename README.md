@@ -1,80 +1,140 @@
-# Academic Project Page Template
+# Generative Digital Twins: Vision-Language Simulation Models for Executable Industrial Systems
 
-> **Update (September 2025)**: This template has been modernized with better design, SEO, and mobile support. For the original version, see the [original-version branch](https://github.com/eliahuhorwitz/Academic-project-page-template/tree/original-version).
+Project page for the CVPR 2026 submission  
+**“Generative Digital Twins: Vision-Language Simulation Models for Executable Industrial Systems”** (under review).
 
-A clean, responsive template for academic project pages.
+> **Status:** Authors and affiliations are kept anonymous to comply with double-blind review.
 
+---
 
-Example project pages built using this template are:
-- https://horwitz.ai/probex
-- https://vision.huji.ac.il/probegen
-- https://horwitz.ai/mother
-- https://horwitz.ai/spectral_detuning
-- https://vision.huji.ac.il/ladeda
-- https://vision.huji.ac.il/dsire
-- https://horwitz.ai/podd
-- https://dreamix-video-editing.github.io
-- https://horwitz.ai/conffusion
-- https://horwitz.ai/3d_ads/
-- https://vision.huji.ac.il/ssrl_ad
-- https://vision.huji.ac.il/deepsim
+## Project Page
 
+The static project page is hosted via GitHub Pages:
 
+**Live page:**  
+https://danielhsu2014.github.io/GDT-VLSM-project/
 
-## Start using the template
-To start using the template click on `Use this Template`.
+This page provides a high-level overview of:
 
-The template uses html for controlling the content and css for controlling the style. 
-To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+- The GDT-120K dataset construction pipeline  
+- Vision-Language Simulation Models (VLSM) architecture  
+- Prototype interface for layout-and-prompt → FlexScript generation  
+- Qualitative results on held-out industrial layouts and LLM backbones
 
-**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+For training code, checkpoints, and data configuration, please refer to the main `GDT-VLSM` repository (separate from this project-page repo).
 
-## What's New
+---
 
-- Modern, clean design with better mobile support
-- Improved SEO with proper meta tags and structured data
-- Performance improvements (lazy loading, optimized assets)
-- More Works dropdown
-- Copy button for BibTeX citations
-- Better accessibility
+## Repository Structure
 
-## Components
+This repository only contains the **static website** for the paper project page.
 
-- Teaser video
-- Image carousel
-- YouTube video embedding
-- Video carousel
-- PDF poster viewer
-- BibTeX citation
+```text
+GDT-VLSM-project/
+├── index.html              # Main project page (single HTML entry point)
+└── static/
+    ├── css/
+    │   ├── bulma.min.css   # Bulma CSS framework
+    │   └── index.css       # Custom styling for this project
+    ├── js/
+    │   ├── bulma-carousel.min.js
+    │   ├── bulma-slider.min.js
+    │   └── index.js        # Minimal JS for scroll-to-top, etc.
+    └── images/
+        ├── first_pic.png       # Teaser / overview figure
+        ├── dataset_pipeline.png
+        ├── VLSM_Pipeline.png
+        ├── UI.png              # Prototype interface screenshot
+        ├── Fig5_3.png          # Main qualitative examples
+        ├── 5.2Quant.png        # LLM backbone comparison
+        ├── suppl_2.png         # Additional qualitative example
+        ├── suppl_3.png         # Additional qualitative example
+        └── favicon.ico         # (Optional) browser tab icon
+```
 
-## Customization
+There is **no backend** and no build step; everything is plain HTML/CSS/JS.
 
-The HTML file has TODO comments showing what to replace:
+---
 
-- Paper title, authors, institution, conference
-- Links (arXiv, GitHub, etc.)
-- Abstract and descriptions  
-- Videos, images, and PDFs
-- Related works in the dropdown
-- Meta tags for SEO and social sharing
+## How to Edit the Page
 
-### Meta Tags
-The template includes meta tags for better search engine visibility and social media sharing. These appear in the `<head>` section and help with:
-- Google Scholar indexing
-- Social media previews (Twitter, Facebook, LinkedIn)
-- Search engine optimization
+Most content lives in a single file:
 
-Create a 1200x630px social preview image at `static/images/social_preview.png`.
+- **`index.html`**  
+  - Title, meta tags  
+  - Abstract  
+  - Section texts (Dataset, VLSM, Prototype Interface, Qualitative Results)  
+  - `<img src="static/images/....png">` for all figures
 
-## Tips
+Typical edits you may want to make:
 
-- Compress images with [TinyPNG](https://tinypng.com)
-- Use YouTube for large videos (>10MB)  
-- Replace the favicon in `static/images/`
-- Works with GitHub Pages
+1. **Update text (e.g., after acceptance)**
+   - Open `index.html`
+   - Search for the relevant section headers:
+     - `Abstract`
+     - `Dataset Construction and Timing Distributions`
+     - `Vision-Language Simulation Models`
+     - `Prototype Interface`
+     - `Qualitative Results`
+   - Modify the paragraphs under each section.
 
-## Acknowledgments
-Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
+2. **Replace figures**
+   - Put new image files into `static/images/`.
+   - Keep the same filenames (easiest), or:
+   - Update the corresponding `src` attributes in `index.html`, for example:
+     ```html
+     <img src="static/images/first_pic.png" alt="..." />
+     ```
 
-## Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+3. **Favicon (optional)**
+   - To customize the browser tab icon, replace `static/images/favicon.ico`
+   - Or remove the favicon lines in `<head>` if you prefer not to use one.
+
+---
+
+## Local Preview
+
+You can test the page locally before pushing changes.
+
+From the repository root:
+
+```bash
+# Option 1: Python simple HTTP server (Python 3)
+python -m http.server 8000
+
+# Then open in your browser:
+# http://localhost:8000
+```
+
+Any edits to `index.html` or files in `static/` can be reloaded by refreshing the page.
+
+---
+
+## Deploying via GitHub Pages
+
+This repository is set up to use **GitHub Pages**:
+
+- Source: `main` branch  
+- Publishing folder: root of this repo
+
+On each push to `main`, GitHub Pages will automatically rebuild and publish the updated version to:
+
+> `https://<github-username>.github.io/GDT-VLSM-project/`
+
+You can verify or change the settings under:  
+**Repository → Settings → Pages**
+
+---
+
+## License & Template Acknowledgment
+
+This project page is based on:
+
+- **Academic Project Page Template**  
+  https://github.com/eliahuhorwitz/Academic-project-page-template  
+- Originally adapted from the **Nerfies** project page:  
+  https://nerfies.github.io
+
+Please keep the attribution in the footer, as required by the template.
+
+Unless otherwise noted, the website content in this repository follows the same license as the main paper/code (to be finalized after the review process).

@@ -45,7 +45,7 @@ GDT-VLSM-project/
         ├── suppl_2.png         # Additional qualitative example
         ├── suppl_3.png         # Additional qualitative example
         └── favicon.ico         # (Optional) browser tab icon
-
+```
 ---
 
 ## License & Template Acknowledgment
